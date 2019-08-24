@@ -10,6 +10,10 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="hackthon_2019"
         android:icon="@mipmap/ic_launcher">
+
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyD6p_GHFkhF-Oz4WZo8RjJjAKT-UTp8qAY"/>
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

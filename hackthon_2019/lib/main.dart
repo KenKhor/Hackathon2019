@@ -1,6 +1,10 @@
 import 'dart:collection';
 
+import 'dart:async';
+import 'dart:collection';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 void main() => runApp(MyApp());
 HashMap<int, HashMap<String,String>> inspector = new HashMap();
@@ -321,4 +325,156 @@ class ThirdRoute extends StatelessWidget {
       ),
     );
   }*/
+}
+
+/**
+* Implement GoogleMaps
+ */
+
+class MyApp2 extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp2> {
+  Completer<GoogleM apController> _controller = Completer();
+
+  //static const LatLng _center = const LatLng(-27.40125, 153.021072);
+  static const LatLng _center = const LatLng(-27.41125, 153.021072);
+
+  List<LatLng> posList = new List<LatLng>();
+
+  final Set<Marker> _markers = {};
+
+  LatLng _lastMapPosition = _center;
+
+  MapType _currentMapType = MapType.normal;
+
+  void _onMapTypeButtonPressed() {
+    setState(() {
+      _currentMapType = _currentMapType == MapType.normal
+          ? MapType.satellite
+          : MapType.normal;
+    });
+  }
+
+  void _hashmap(){
+
+
+  }
+  void _onAddMarkerButtonPressed() {
+    //LatLng pos = _generate_lat_lng();
+    //print(pos);
+    LatLng posA = _generate_lat_lng();
+    posList.add(_center);
+    setState(() {
+      _markers.clear();
+      for (LatLng pos in posList) {
+        final marker = Marker(
+          markerId: MarkerId(pos.toString()),
+          position: pos,
+          infoWindow: InfoWindow(
+            title: 'Really cool place',
+            snippet: '5 Star Rating',
+          ),
+          icon: BitmapDescriptor.defaultMarker,
+        );
+        _markers.add(marker);
+      }
+    });
+  }
+  /*
+          _markers.add(Marker(
+            // This marker id can be anything that uniquely identifies each marker.
+            markerId: MarkerId(pos.toString()),
+            position: pos,
+            infoWindow: InfoWindow(
+              title: 'Really cool place',
+              snippet: '5 Star Rating',
+            ),
+            icon: BitmapDescriptor.defaultMarker,
+          ));
+        });
+
+           */
+
+
+
+
+
+
+
+
+  LatLng _generate_lat_lng() {
+    var rng = new Random();
+    int sign = rng.nextInt(2);
+    double latitude = rng.nextDouble()/100;
+    double longitude = rng.nextDouble()/100;
+    if (sign > 1) {
+      latitude += -27.470125;
+      //longitude += 153.021072;
+    } else {
+      latitude -= -27.470125;
+      //longitude -= 153.021072;
+    }
+    return LatLng(latitude, longitude);
+
+  }
+
+  void _onCameraMove(CameraPosition position) {
+    _lastMapPosition = position.target;
+  }
+
+  void _onMapCreated(GoogleMapController controller) {
+    _controller.complete(controller);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Maps Sample App'),
+          backgroundColor: Colors.green[700],
+        ),
+        body: Stack(
+          children: <Widget>[
+            GoogleMap(
+              onMapCreated: _onMapCreated,
+              initialCameraPosition: CameraPosition(
+                target: _center,
+                zoom: 11.0,
+              ),
+              mapType: _currentMapType,
+              markers: _markers,
+              onCameraMove: _onCameraMove,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Column(
+                  children: <Widget> [
+                    FloatingActionButton(
+                      onPressed: _onMapTypeButtonPressed,
+                      materialTapTargetSize: MaterialTapTargetSize.padded,
+                      backgroundColor: Colors.green,
+                      child: const Icon(Icons.map, size: 36.0),
+                    ),
+                    SizedBox(height: 16.0),
+                    FloatingActionButton(
+                      onPressed: _onAddMarkerButtonPressed,
+                      materialTapTargetSize: MaterialTapTargetSize.padded,
+                      backgroundColor: Colors.green,
+                      child: const Icon(Icons.add_location, size: 36.0),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
