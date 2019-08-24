@@ -96,52 +96,68 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                new RaisedButton(
+                  padding: const EdgeInsets.all(8.0),
+                  textColor: Colors.white,
+                  color: Colors.red,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SecondRoute()),
+                    );
+                  },
+                  child: new Text("I am an Inspector"),
+                ),
+
+                new RaisedButton(
+                  padding: const EdgeInsets.all(8.0),
+                  textColor: Colors.white,
+                  color: Colors.red,
+                  onPressed: _reset,
+                  child: new Text("I am looking for an Inspector"),
+                ),
+              ]
+          ),
+          Row(
             children: <Widget>[
               new RaisedButton(
-                padding: const EdgeInsets.all(8.0),
+                padding:const EdgeInsets.all(8.0),
                 textColor: Colors.white,
                 color: Colors.red,
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SecondRoute()),
+                    MaterialPageRoute(builder: (context) => ThirdRoute()),
                   );
                 },
-                child: new Text("I am an Inspector"),
-                ),
-
-              new RaisedButton(
-              padding: const EdgeInsets.all(8.0),
-              textColor: Colors.white,
-              color: Colors.red,
-              onPressed: _reset,
-              child: new Text("I am looking for an Inspector"),
+                child: new Text("MAP"),
               ),
-              ],
+            ],
           ),
         ],
       ),
     );
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: ListView(
-        children: [
-          Image.asset(
-            'images/Unknown.jpg',
-            width: 100,
-            height: 156,
-            fit: BoxFit.fitWidth,
-          ),
-          selectSection,
+        appBar: AppBar(
+          // Here we take the value from the MyHomePage object that was created by
+          // the App.build method, and use it to set our appbar title.
+          title: Text(widget.title),
+        ),
+        body: ListView(
+            children: [
+              Image.asset(
+                'images/Unknown.jpg',
+                width: 100,
+                height: 156,
+                fit: BoxFit.fitWidth,
+              ),
+              selectSection,
 
-        ]
+            ]
 
-      )
+        )
       // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
@@ -197,8 +213,7 @@ class _InspectorFormState extends State<InspectorForm> {
   }
 
   void submit() {
-    inspector[int.parse(postcodeController.text)] = nameController.text;
-    print(inspector[int.parse(postcodeController.text)]);
+
   }
   @override
   Widget build(BuildContext context) {
@@ -241,7 +256,7 @@ class _InspectorFormState extends State<InspectorForm> {
                 padding: const EdgeInsets.all(4.0),
                 textColor: Colors.white,
                 color: Colors.blue,
-                onPressed: empty,
+                onPressed: submit,
                 child: new Text("Submit"),
               ),
               new RaisedButton(
@@ -259,4 +274,30 @@ class _InspectorFormState extends State<InspectorForm> {
     // TODO: implement build
     return null;
   }
+}
+
+class ThirdRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Inspector Information',
+      home: InspectorForm(),
+    );
+  }
+/*{
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Second Route"),
+      ),
+      body: Center(
+        child: RaisedButton(
+          onPressed: () {
+            Navigator.pop(context);
+            // Navigate back to first route when tapped.
+          },
+          child: Text('Go back!'),
+        ),
+      ),
+    );  
+  }*/
 }
