@@ -165,12 +165,21 @@ class _MyHomePageState extends State<MyHomePage> {
 //              ),
 //            ],
 //          ),
-          Image.asset(
-            'images/maxresdefault.jpg',
-            width: 100,
-            height: 156,
-            fit: BoxFit.fitWidth,
-          ),
+      Container(
+        width: 100,
+        height: 100,
+        child: Image.asset(
+          'images/add01',
+          //'images/Unknown.jpg',
+          fit: BoxFit.fitHeight,
+        ),
+      ),
+//          Image.asset(
+//            'images/Unknown.jpg',
+//            width: 100,
+//            height: 156,
+//            fit: BoxFit.fitWidth,
+//          ),
 //          new Container(
 //            height: 120.0,
 //            width: 120.0,
