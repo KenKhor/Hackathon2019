@@ -350,6 +350,10 @@ class _MyAppState extends State<MyApp2> {
 
   MapType _currentMapType = MapType.normal;
 
+  double offset = 0.01;
+  double latitude = -27.41125;
+  double longitude = 153.021072;
+
   void _onMapTypeButtonPressed() {
     setState(() {
       _currentMapType = _currentMapType == MapType.normal
@@ -358,19 +362,13 @@ class _MyAppState extends State<MyApp2> {
     });
   }
 
-  void _hashmap(){
-
-
-  }
   void _onAddMarkerButtonPressed() {
-    //LatLng pos = _generate_lat_lng();
-    //print(pos);
-    LatLng posA = _generate_lat_lng();
-    posList.add(_center);
+    posList.add(_generate_lat_lng());
+    print(posList);
     setState(() {
       _markers.clear();
       for (LatLng pos in posList) {
-        final marker = Marker(
+        _markers.add(Marker(
           markerId: MarkerId(pos.toString()),
           position: pos,
           infoWindow: InfoWindow(
@@ -378,45 +376,36 @@ class _MyAppState extends State<MyApp2> {
             snippet: '5 Star Rating',
           ),
           icon: BitmapDescriptor.defaultMarker,
-        );
-        _markers.add(marker);
+        ));
       }
     });
   }
-  /*
-          _markers.add(Marker(
-            // This marker id can be anything that uniquely identifies each marker.
-            markerId: MarkerId(pos.toString()),
-            position: pos,
-            infoWindow: InfoWindow(
-              title: 'Really cool place',
-              snippet: '5 Star Rating',
-            ),
-            icon: BitmapDescriptor.defaultMarker,
-          ));
-        });
-
-           */
-
-
-
-
-
-
-
 
   LatLng _generate_lat_lng() {
     var rng = new Random();
-    int sign = rng.nextInt(2);
-    double latitude = rng.nextDouble()/100;
-    double longitude = rng.nextDouble()/100;
-    if (sign > 1) {
-      latitude += -27.470125;
-      //longitude += 153.021072;
-    } else {
-      latitude -= -27.470125;
-      //longitude -= 153.021072;
+    int sign = rng.nextInt(4);
+    double x = rng.nextDouble()/100;
+    double y = rng.nextDouble()/100;
+
+    double latitude = this.latitude;
+    double longitude = this.longitude;
+
+    if (sign > 3) {
+      latitude += x;
+      longitude += y;
+    } else if (sign > 2) {
+      latitude -= x;
+      longitude -= y;
+    } else if (sign > 1) {
+      latitude -= x;
+      longitude += y;
+    } else{
+      latitude += x;
+      longitude -= y;
     }
+//    latitude += offset;
+//    longitude += offset;
+
     return LatLng(latitude, longitude);
 
   }
@@ -431,6 +420,9 @@ class _MyAppState extends State<MyApp2> {
 
   @override
   Widget build(BuildContext context) {
+
+//    posList.add(LatLng(-27.41125, 153.021072));
+//    posList.add(LatLng(-27.3859, 153.0295));
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
