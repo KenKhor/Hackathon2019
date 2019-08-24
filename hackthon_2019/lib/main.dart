@@ -337,7 +337,7 @@ class MyApp2 extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp2> {
-  Completer<GoogleM apController> _controller = Completer();
+  Completer<GoogleMapController> _controller = Completer();
 
   //static const LatLng _center = const LatLng(-27.40125, 153.021072);
   static const LatLng _center = const LatLng(-27.41125, 153.021072);
