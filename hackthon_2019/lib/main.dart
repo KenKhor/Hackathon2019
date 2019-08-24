@@ -136,7 +136,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: const EdgeInsets.all(20.0),
                   textColor: Colors.white,
                   color: Colors.red,
-                  onPressed: _reset,
+                    onPressed: () {
+                    Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ThirdRoute()),
+                    );
+                    },
                   child: new Text("Inspector Search",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -169,7 +174,7 @@ class _MyHomePageState extends State<MyHomePage> {
         width: 100,
         height: 100,
         child: Image.asset(
-          'images/add01',
+          'images/Unknown.jpg',
           //'images/Unknown.jpg',
           fit: BoxFit.fitHeight,
         ),
@@ -392,8 +397,8 @@ class ThirdRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Inspector Information',
-      home: InspectorForm(),
+      title: 'Mapp',
+      home: MyApp2(),
     );
   }
 /*{
@@ -535,6 +540,7 @@ class _MyAppState extends State<MyApp2> {
                 child: Column(
                   children: <Widget> [
                     FloatingActionButton(
+                      heroTag: "btn1",
                       onPressed: _onMapTypeButtonPressed,
                       materialTapTargetSize: MaterialTapTargetSize.padded,
                       backgroundColor: Colors.green,
@@ -542,6 +548,7 @@ class _MyAppState extends State<MyApp2> {
                     ),
                     SizedBox(height: 16.0),
                     FloatingActionButton(
+                      heroTag: "btn2",
                       onPressed: _onAddMarkerButtonPressed,
                       materialTapTargetSize: MaterialTapTargetSize.padded,
                       backgroundColor: Colors.green,
