@@ -27,7 +27,10 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.red,
       ),
-      home: MyHomePage(title: 'Find an Inspector!'),
+      home: MyHomePage(
+          title: 'I N S P E C T A',
+         ),
+
     );
   }
 }
@@ -96,15 +99,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 25,
+
                 ),
               ),
             ],
+          ),
+          new Container(
+            height: 20,
           ),
           Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 new RaisedButton(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(20.0),
                   textColor: Colors.white,
                   color: Colors.red,
                   onPressed: () {
@@ -116,15 +123,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       MaterialPageRoute(builder: (context) => SecondRoute()),
                     );
                   },
-                  child: new Text("I am an Inspector"),
+                  child: new Text("Inspector account"),
                 ),
 
                 new RaisedButton(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(20.0),
                   textColor: Colors.white,
                   color: Colors.red,
                   onPressed: _reset,
-                  child: new Text("I am looking for an Inspector"),
+                  child: new Text("Inspector Search"),
                 ),
               ]
           ),
@@ -152,6 +159,12 @@ class _MyHomePageState extends State<MyHomePage> {
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
           title: Text(widget.title),
+          centerTitle: true,
+          textTheme: TextTheme(
+          title: TextStyle(
+          color: Colors.white,
+          fontSize: 30.0,)
+          )
         ),
         body: ListView(
             children: [
