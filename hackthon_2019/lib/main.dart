@@ -93,6 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Column(
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
                 'What are you here for?',
@@ -123,7 +124,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       MaterialPageRoute(builder: (context) => SecondRoute()),
                     );
                   },
-                  child: new Text("Inspector account"),
+                  child: Text("Inspector Account",
+                    style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                    )
+                  ),
                 ),
 
                 new RaisedButton(
@@ -131,9 +137,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   textColor: Colors.white,
                   color: Colors.red,
                   onPressed: _reset,
-                  child: new Text("Inspector Search"),
+                  child: new Text("Inspector Search",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                      )
+                  ),
                 ),
               ]
+          ),
+          new Container(
+            height: 20,
           ),
           Row(
             children: <Widget>[
@@ -257,10 +271,22 @@ class _InspectorFormState extends State<InspectorForm> {
     //currentContext = context;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Inspector Information'),
+        title: Text('Inspector Account Creation'),
+        centerTitle: true,
       ),
       body: ListView(
         children: <Widget>[
+          new Container(
+            height: 40,
+          ),
+          new Container(
+            height: 20,
+            alignment: Alignment(0.0, 0.0),
+            child: Text("Want to become an Inspector? Enter Your details below to begin")
+          ),
+          new Container(
+            height: 40,
+          ),
           Text(
             'Your Name:',
             style: TextStyle(
@@ -288,7 +314,9 @@ class _InspectorFormState extends State<InspectorForm> {
           TextField(
             controller: postcodeController,
           ),
+          
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               new RaisedButton(
                 padding: const EdgeInsets.all(4.0),
@@ -303,6 +331,26 @@ class _InspectorFormState extends State<InspectorForm> {
                 color: Colors.blue,
                 onPressed: empty,
                 child: new Text("Clear"),
+              ),
+            ],
+          ),
+          new Container(
+              height: 40,
+          ),
+          new Container(
+            height: 20,
+              alignment: Alignment(0.0, 0.0),
+              child: Text("Already have an Account? Click Below to Log in")
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              new RaisedButton(
+                padding: const EdgeInsets.all(4.0),
+                textColor: Colors.white,
+                color: Colors.blue,
+                onPressed: submit,
+                child: new Text("Log In"),
               ),
             ],
           ),
