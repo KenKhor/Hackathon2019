@@ -149,22 +149,39 @@ class _MyHomePageState extends State<MyHomePage> {
           new Container(
             height: 20,
           ),
-          Row(
-            children: <Widget>[
-              new RaisedButton(
-                padding:const EdgeInsets.all(8.0),
-                textColor: Colors.white,
-                color: Colors.red,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ThirdRoute()),
-                  );
-                },
-                child: new Text("MAP"),
-              ),
-            ],
+//          Row(
+//            children: <Widget>[
+//              new RaisedButton(
+//                padding:const EdgeInsets.all(8.0),
+//                textColor: Colors.white,
+//                color: Colors.red,
+//                onPressed: () {
+//                  Navigator.push(
+//                    context,
+//                    MaterialPageRoute(builder: (context) => ThirdRoute()),
+//                  );
+//                },
+//                child: new Text("MAP"),
+//              ),
+//            ],
+//          ),
+          Image.asset(
+            'images/maxresdefault.jpg',
+            width: 100,
+            height: 156,
+            fit: BoxFit.fitWidth,
           ),
+//          new Container(
+//            height: 120.0,
+//            width: 120.0,
+//            decoration: new BoxDecoration(
+//              image: DecorationImage(
+//                image: new AssetImage(
+//                    'images/maxresdefault.jpg'),
+//                fit: BoxFit.fill,
+//              ),
+//            ),
+//          ),
         ],
       ),
     );
