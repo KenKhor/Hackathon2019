@@ -3,7 +3,8 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
-HashMap<int, String> inspector = new HashMap<int, String>();
+HashMap<int, HashMap<String,String>> inspector = new HashMap();
+BuildContext currentContext;
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -103,6 +104,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   textColor: Colors.white,
                   color: Colors.red,
                   onPressed: () {
+                    /*
+                    _navigateAndDisplayInspector();
+                     */
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => SecondRoute()),
@@ -213,10 +217,27 @@ class _InspectorFormState extends State<InspectorForm> {
   }
 
   void submit() {
+    int postCode;
+    postCode = int.parse(postcodeController.text);
+    HashMap<String, String> information = new HashMap();
+    String name;
+    String email;
+    name = nameController.text;
+    email = emailController.text;
+    if (inspector.containsKey(postCode)) {
+      (inspector[postCode])[name] = email;
+    }
+    else {
+      information[name] = email;
+      inspector[postCode] = information;
+    }
+      print("$inspector");
+
 
   }
   @override
   Widget build(BuildContext context) {
+    //currentContext = context;
     return Scaffold(
       appBar: AppBar(
         title: Text('Inspector Information'),
@@ -298,6 +319,6 @@ class ThirdRoute extends StatelessWidget {
           child: Text('Go back!'),
         ),
       ),
-    );  
+    );
   }*/
 }
