@@ -575,10 +575,10 @@ class _MyAppState extends State<MyApp2> {
 //    posList.add(LatLng(-27.3859, 153.0295));
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Inspector Map'),
-          backgroundColor: Colors.red[700],
-        ),
+//        appBar: AppBar(
+//          title: Text('Inspector Map'),
+//          backgroundColor: Colors.red[700],
+//        ),
         body: Stack(
           children: <Widget>[
             GoogleMap(
@@ -656,14 +656,18 @@ class Example9 extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title:Text("Your Postcode"),
+          backgroundColor: Colors.red[700],
         actions: <Widget>[
           IconButton(icon: new Icon(Icons.search), onPressed: (){
             showSearch(context: context, delegate: DataSearch());
           })
         ],
       ),
+
       drawer: Drawer(),
+    body: MyApp2(),
     );
+
   }
 }
 
