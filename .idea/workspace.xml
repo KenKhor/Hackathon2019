@@ -21,8 +21,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hackthon_2019/lib/main.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-745">
-              <caret line="311" column="26" lean-forward="true" selection-start-line="311" selection-start-column="26" selection-end-line="311" selection-end-column="26" />
+            <state relative-caret-position="180">
+              <caret line="319" column="43" lean-forward="true" selection-start-line="319" selection-start-column="43" selection-end-line="319" selection-end-column="43" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -118,7 +118,7 @@
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/AndroidStudioProjects/searchy_boi" />
     <property name="settings.editor.selected.configurable" value="flutter.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
@@ -195,8 +195,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hackthon_2019/lib/main.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-745">
-          <caret line="311" column="26" lean-forward="true" selection-start-line="311" selection-start-column="26" selection-end-line="311" selection-end-column="26" />
+        <state relative-caret-position="180">
+          <caret line="319" column="43" lean-forward="true" selection-start-line="319" selection-start-column="43" selection-end-line="319" selection-end-column="43" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
