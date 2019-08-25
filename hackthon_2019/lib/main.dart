@@ -316,9 +316,21 @@ class _InspectorFormState extends State<InspectorForm> {
             height: 40,
           ),
           new Container(
-            height: 20,
+            height: 30,
             alignment: Alignment(0.0, 0.0),
-            child: Text("Want to become an Inspector? Enter Your details below to begin")
+            child: Text("Want to become an Inspector?",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ))
+          ),
+          new Container(
+            height: 40,
+          ),
+          new Container(
+              height: 20,
+              //alignment: Alignment(0.0, 0.0),
+              child: Text("Enter Your details below to begin:")
           ),
           new Container(
             height: 40,
@@ -357,7 +369,7 @@ class _InspectorFormState extends State<InspectorForm> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               new RaisedButton(
-                padding: const EdgeInsets.all(20.0),
+                padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 50.0),
                 textColor: Colors.white,
                 color: Colors.red,
                 onPressed: () {
@@ -370,7 +382,7 @@ class _InspectorFormState extends State<InspectorForm> {
                 )),
               ),
               new RaisedButton(
-                padding: const EdgeInsets.all(20.0),
+                padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 55.0),
                 textColor: Colors.white,
                 color: Colors.red,
                 onPressed: empty,
