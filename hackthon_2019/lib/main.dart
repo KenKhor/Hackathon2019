@@ -380,6 +380,7 @@ class _InspectorFormState extends State<InspectorForm> {
                 color: Colors.red,
                 onPressed: () {
                   submit();
+                  empty();
                 },
                 child: new Text("Submit",
                   style: TextStyle(
