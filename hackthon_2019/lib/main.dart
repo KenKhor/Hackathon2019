@@ -8,6 +8,10 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 void main() => runApp(MyApp());
 HashMap<int, HashMap<String,String>> inspector = new HashMap();
+HashMap<int, List> coords = new HashMap();
+
+
+
 BuildContext currentContext;
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -293,7 +297,8 @@ class _InspectorFormState extends State<InspectorForm> {
       information[name] = email;
       inspector[postCode] = information;
     }
-      print("$inspector");
+
+    print("$inspector");
 
 
   }
@@ -353,7 +358,9 @@ class _InspectorFormState extends State<InspectorForm> {
                 padding: const EdgeInsets.all(4.0),
                 textColor: Colors.white,
                 color: Colors.blue,
-                onPressed: submit,
+                onPressed: () {
+                  submit();
+                },
                 child: new Text("Submit"),
               ),
               new RaisedButton(
@@ -431,6 +438,14 @@ class MyApp2 extends StatefulWidget {
 class _MyAppState extends State<MyApp2> {
   Completer<GoogleMapController> _controller = Completer();
 
+  final coords = {4067: {-27.498456, 153.006001}, 4068:
+  {-27.501959, 152.974870}, 4066: {-27.482627, 152.984983}, 4064:
+  {-27.466399, 153.007242}, 4006: {-27.456323, 153.035119}};
+
+  for(var i in inspector.keys){
+    _onAddMarkerButtonPressed(i);
+  }
+
   //static const LatLng _center = const LatLng(-27.40125, 153.021072);
   static const LatLng _center = const LatLng(-27.41125, 153.021072);
 
@@ -454,8 +469,9 @@ class _MyAppState extends State<MyApp2> {
     });
   }
 
-  void _onAddMarkerButtonPressed() {
-    posList.add(_generate_lat_lng());
+  void _onAddMarkerButtonPressed(int coord) {
+    Set lat_lang = coords[coord];
+    posList.add(_generate_lat_lng(lat_lang[0], lat_lang[1]));
     print(posList);
     setState(() {
       _markers.clear();
@@ -473,14 +489,14 @@ class _MyAppState extends State<MyApp2> {
     });
   }
 
-  LatLng _generate_lat_lng() {
+  LatLng _generate_lat_lng(double lat, double long) {
     var rng = new Random();
     int sign = rng.nextInt(4);
     double x = rng.nextDouble()/100;
     double y = rng.nextDouble()/100;
 
-    double latitude = this.latitude;
-    double longitude = this.longitude;
+    double latitude = lat;
+    double longitude = long;
 
     if (sign > 3) {
       latitude += x;
@@ -547,6 +563,7 @@ class _MyAppState extends State<MyApp2> {
                       child: const Icon(Icons.map, size: 36.0),
                     ),
                     SizedBox(height: 16.0),
+                    /*
                     FloatingActionButton(
                       heroTag: "btn2",
                       onPressed: _onAddMarkerButtonPressed,
@@ -554,6 +571,8 @@ class _MyAppState extends State<MyApp2> {
                       backgroundColor: Colors.green,
                       child: const Icon(Icons.add_location, size: 36.0),
                     ),
+
+                     */
                   ],
                 ),
               ),
