@@ -470,7 +470,10 @@ class _MyAppState extends State<MyApp2> {
 
   void _setup() {
     for(var i in inspector.keys){
-      _onAddMarkerButtonPressed(i);
+      String name = inspector[i].toString().substring(1,
+          inspector[i].toString().length - 1);
+      _onAddMarkerButtonPressed(i, name);
+
     }
   }
 
@@ -482,28 +485,36 @@ class _MyAppState extends State<MyApp2> {
     });
   }
 
-  void _onAddMarkerButtonPressed(int coord) {
+  void _onAddMarkerButtonPressed(int coord, String name) {
     List<double> lat_lang = coords[coord];
     posList.add(_generate_lat_lng(lat_lang[0], lat_lang[1]));
-    print(posList);
-    String name;
-    for (var i in inspector[coord].keys) {
-      name = i ;
-    }
-    String email = inspector[coord][name];
+//    HashMap<String, String> name = inspector[coord];
+//    String nameS = name.toString();
+//    String nameA = nameS.substring(1, nameS.length - 1);
     setState(() {
-      _markers.clear();
-      for (LatLng pos in posList) {
-        _markers.add(Marker(
-          markerId: MarkerId(pos.toString()),
-          position: pos,
-          infoWindow: InfoWindow(
-            title: '$name',
-            snippet: '$email',
-          ),
-          icon: BitmapDescriptor.defaultMarker,
-        ));
-      }
+      //_markers.clear();
+
+      _markers.add(Marker(
+        markerId: MarkerId(_generate_lat_lng(lat_lang[0], lat_lang[1]).toString()),
+        position: _generate_lat_lng(lat_lang[0], lat_lang[1]),
+        infoWindow: InfoWindow(
+          title: '$name',
+          snippet: '$coord',
+        ),
+        icon: BitmapDescriptor.defaultMarker,
+      ));
+
+//      for (LatLng pos in posList) {
+//        _markers.add(Marker(
+//          markerId: MarkerId(pos.toString()),
+//          position: pos,
+//          infoWindow: InfoWindow(
+//            title: '$name',
+//            snippet: 'email',
+//          ),
+//          icon: BitmapDescriptor.defaultMarker,
+//        ));
+//      }
     });
   }
 
@@ -553,7 +564,7 @@ class _MyAppState extends State<MyApp2> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Maps Sample App'),
+          title: Text('Inspector Map'),
           backgroundColor: Colors.red[700],
         ),
         body: Stack(
@@ -599,6 +610,19 @@ class _MyAppState extends State<MyApp2> {
           ],
         ),
       ),
+    );
+
+
+  }
+}
+
+
+class FourthRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Inspector List',
+      home: MyApp2(),
     );
   }
 }
