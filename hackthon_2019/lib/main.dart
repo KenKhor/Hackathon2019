@@ -308,6 +308,7 @@ class _InspectorFormState extends State<InspectorForm> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Inspector Account Creation'),
+        backgroundColor: Colors.red[700],
         centerTitle: true,
       ),
       body: ListView(
@@ -350,25 +351,35 @@ class _InspectorFormState extends State<InspectorForm> {
           TextField(
             controller: postcodeController,
           ),
-          
+          new Container(
+            height: 40,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               new RaisedButton(
-                padding: const EdgeInsets.all(4.0),
+                padding: const EdgeInsets.all(20.0),
                 textColor: Colors.white,
-                color: Colors.blue,
+                color: Colors.red,
                 onPressed: () {
                   submit();
                 },
-                child: new Text("Submit"),
+                child: new Text("Submit",
+                  style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                )),
               ),
               new RaisedButton(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(20.0),
                 textColor: Colors.white,
-                color: Colors.blue,
+                color: Colors.red,
                 onPressed: empty,
-                child: new Text("Clear"),
+                child: new Text("Clear",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    )),
               ),
             ],
           ),
@@ -386,7 +397,7 @@ class _InspectorFormState extends State<InspectorForm> {
               new RaisedButton(
                 padding: const EdgeInsets.all(4.0),
                 textColor: Colors.white,
-                color: Colors.blue,
+                color: Colors.red,
                 onPressed: submit,
                 child: new Text("Log In"),
               ),
@@ -535,7 +546,7 @@ class _MyAppState extends State<MyApp2> {
       home: Scaffold(
         appBar: AppBar(
           title: Text('Maps Sample App'),
-          backgroundColor: Colors.green[700],
+          backgroundColor: Colors.red[700],
         ),
         body: Stack(
           children: <Widget>[
@@ -559,7 +570,7 @@ class _MyAppState extends State<MyApp2> {
                       heroTag: "btn1",
                       onPressed: _onMapTypeButtonPressed,
                       materialTapTargetSize: MaterialTapTargetSize.padded,
-                      backgroundColor: Colors.green,
+                      backgroundColor: Colors.red,
                       child: const Icon(Icons.map, size: 36.0),
                     ),
                     SizedBox(height: 16.0),
