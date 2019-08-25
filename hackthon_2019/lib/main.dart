@@ -7,7 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 void main() => runApp(MyApp());
-HashMap<int, HashMap<String,String>> inspector = new HashMap();
+Map<int, Map<String,String>> inspector = {4006: {'Oskar': 'opgregurek@gmail.com'},
+  4066: {'Ben': 'ben@uqconnect.edu.au'}, 4068: {'Ken': 'ken@uq.com'}, 4064: {'Lorena': 'lorena@uq.com'}};
+
+//new HashMap();
+
+
 HashMap<int, List<double>> coords = new HashMap<int, List<double>>();
 int searchedPostCode = 4000;
 int checker = 0;
@@ -477,7 +482,6 @@ class _MyAppState extends State<MyApp2> {
   List<LatLng> posList = new List<LatLng>();
 
   final Set<Marker> _markers = {};
-
 
   MapType _currentMapType = MapType.normal;
 
