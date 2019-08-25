@@ -6,6 +6,7 @@
       <excludeFolder url="file://$MODULE_DIR$/hackthon_2019/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/hackthon_2019/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/hackthon_2019/build" />
+      <excludeFolder url="file://$MODULE_DIR$/hackthon_2019/startup_namer/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/hackthon_2019/startup_namer/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/hackthon_2019/startup_namer/build" />
     </content>
