@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1dcedd2-b874-43d7-881e-dbe103c138fa" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Hackathon2019.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Hackathon2019.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hackthon_2019/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/hackthon_2019/lib/main.dart" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,8 +20,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hackthon_2019/lib/main.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="367">
-              <caret line="725" column="3" selection-start-line="725" selection-start-column="3" selection-end-line="725" selection-end-column="3" />
+            <state relative-caret-position="1387">
+              <caret line="662" column="12" lean-forward="true" selection-start-line="662" selection-start-column="12" selection-end-line="662" selection-end-column="12" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -48,6 +46,8 @@
       <find>creation</find>
       <find>thir</find>
       <find>buildResults</find>
+      <find>Third</find>
+      <find>MyApp2</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -173,7 +173,7 @@
       <window_info id="Resources Explorer" order="5" weight="0.3295302" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Favorites" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Run" order="0" sideWeight="0.49932885" visible="true" weight="0.3286119" />
+      <window_info active="true" anchor="bottom" id="Run" order="0" sideWeight="0.49932885" visible="true" weight="0.3286119" />
       <window_info anchor="bottom" id="TODO" order="1" />
       <window_info anchor="bottom" id="Debug" order="2" />
       <window_info anchor="bottom" id="Terminal" order="3" />
@@ -191,8 +191,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/hackthon_2019/lib/main.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="725" column="3" selection-start-line="725" selection-start-column="3" selection-end-line="725" selection-end-column="3" />
+        <state relative-caret-position="1387">
+          <caret line="662" column="12" lean-forward="true" selection-start-line="662" selection-start-column="12" selection-end-line="662" selection-end-column="12" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
