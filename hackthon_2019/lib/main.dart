@@ -9,7 +9,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 void main() => runApp(MyApp());
 HashMap<int, HashMap<String,String>> inspector = new HashMap();
 HashMap<int, List<double>> coords = new HashMap<int, List<double>>();
-
+int searchedPostCode = 4000;
+int checker = 0;
 
 BuildContext currentContext;
 class MyApp extends StatelessWidget {
@@ -461,19 +462,23 @@ class MyApp2 extends StatefulWidget {
 class _MyAppState extends State<MyApp2> {
   Completer<GoogleMapController> _controller = Completer();
 
-  final coords = {4067: [-27.498456, 153.006001], 4068:
+  static const coords = {4067: [-27.498456, 153.006001], 4068:
   [-27.501959, 152.974870], 4066: [-27.482627, 152.984983], 4064:
-  [-27.466399, 153.007242], 4006: [-27.456323, 153.035119]};
+  [-27.466399, 153.007242], 4006: [-27.456323, 153.035119], 4000:
+  [-27.470519, 153.024715]};
 
 
   //static const LatLng _center = const LatLng(-27.40125, 153.021072);
-  static const LatLng _center = const LatLng(-27.41125, 153.021072);
+
+
+  //static const LatLng _center = const LatLng(-27.41125, 153.021072);
+
+  LatLng _lastMapPosition;
 
   List<LatLng> posList = new List<LatLng>();
 
   final Set<Marker> _markers = {};
 
-  LatLng _lastMapPosition = _center;
 
   MapType _currentMapType = MapType.normal;
 
@@ -496,6 +501,21 @@ class _MyAppState extends State<MyApp2> {
           ? MapType.satellite
           : MapType.normal;
     });
+  }
+
+  LatLng _generateCenter() {
+    List<double> init_lat_lang = coords[searchedPostCode];
+    LatLng center = _generate_lat_lng(init_lat_lang[0], init_lat_lang[1]);
+    return center;
+  }
+
+  double _generateZoom() {
+    if (checker == 0) {
+      return 11.0;
+    }
+    else {
+      return 14.0;
+    }
   }
 
   void _onAddMarkerButtonPressed(int coord, String name) {
@@ -531,7 +551,7 @@ class _MyAppState extends State<MyApp2> {
     });
   }
 
-  LatLng _generate_lat_lng(double lat, double long) {
+  static LatLng _generate_lat_lng(double lat, double long) {
     var rng = new Random();
     int sign = rng.nextInt(4);
     double x = rng.nextDouble()/100;
@@ -585,8 +605,8 @@ class _MyAppState extends State<MyApp2> {
             GoogleMap(
               onMapCreated: _onMapCreated,
               initialCameraPosition: CameraPosition(
-                target: _center,
-                zoom: 11.0,
+                target: _generateCenter(),
+                zoom: _generateZoom(),
               ),
               mapType: _currentMapType,
               markers: _markers,
@@ -630,17 +650,6 @@ class _MyAppState extends State<MyApp2> {
 }
 
 
-class FourthRoute extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Inspector List',
-      home: MyApp2(),
-    );
-  }
-}
-
-
 class SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -676,7 +685,7 @@ class DataSearch extends SearchDelegate<String>{
 
   final cities = [
     "Saint Lucia, 4067",
-    "Toowong,4066",
+    "Toowong, 4066",
     "Indooroopilly, 4068",
     "Milton, 4064",
     "Fortitude Valley, 4006",
@@ -741,6 +750,10 @@ class DataSearch extends SearchDelegate<String>{
       itemBuilder: (context,index)=> ListTile(
         onTap: (){
           showResults(context);
+          int length = suggestionlist[index].length;
+          String postCode = suggestionlist[index].substring(length - 4, length);
+          searchedPostCode = int.parse(postCode);
+          checker = 1;
         },
         leading: Icon(Icons.location_city),
         title: RichText(
