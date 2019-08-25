@@ -10,6 +10,7 @@ void main() => runApp(MyApp());
 HashMap<int, HashMap<String,String>> inspector = new HashMap();
 HashMap<int, List<double>> coords = new HashMap<int, List<double>>();
 int searchedPostCode = 4000;
+int checker = 0;
 
 BuildContext currentContext;
 class MyApp extends StatelessWidget {
@@ -467,16 +468,16 @@ class _MyAppState extends State<MyApp2> {
 
 
   //static const LatLng _center = const LatLng(-27.40125, 153.021072);
-  static List<double> init_lat_lang = coords[searchedPostCode];
-  static final LatLng center = _generate_lat_lng(init_lat_lang[0], init_lat_lang[1]);
+
 
   //static const LatLng _center = const LatLng(-27.41125, 153.021072);
+
+  LatLng _lastMapPosition;
 
   List<LatLng> posList = new List<LatLng>();
 
   final Set<Marker> _markers = {};
 
-  LatLng _lastMapPosition = center;
 
   MapType _currentMapType = MapType.normal;
 
@@ -499,6 +500,21 @@ class _MyAppState extends State<MyApp2> {
           ? MapType.satellite
           : MapType.normal;
     });
+  }
+
+  LatLng _generateCenter() {
+    List<double> init_lat_lang = coords[searchedPostCode];
+    LatLng center = _generate_lat_lng(init_lat_lang[0], init_lat_lang[1]);
+    return center;
+  }
+
+  double _generateZoom() {
+    if (checker == 0) {
+      return 11.0;
+    }
+    else {
+      return 14.0;
+    }
   }
 
   void _onAddMarkerButtonPressed(int coord, String name) {
@@ -588,8 +604,8 @@ class _MyAppState extends State<MyApp2> {
             GoogleMap(
               onMapCreated: _onMapCreated,
               initialCameraPosition: CameraPosition(
-                target: center,
-                zoom: 11.0,
+                target: _generateCenter(),
+                zoom: _generateZoom(),
               ),
               mapType: _currentMapType,
               markers: _markers,
@@ -736,6 +752,7 @@ class DataSearch extends SearchDelegate<String>{
           int length = suggestionlist[index].length;
           String postCode = suggestionlist[index].substring(length - 4, length);
           searchedPostCode = int.parse(postCode);
+          checker = 1;
         },
         leading: Icon(Icons.location_city),
         title: RichText(
