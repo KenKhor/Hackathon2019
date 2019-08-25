@@ -8,8 +8,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 void main() => runApp(MyApp());
 HashMap<int, HashMap<String,String>> inspector = new HashMap();
-HashMap<int, List> coords = new HashMap();
-
+HashMap<int, List<double>> coords = new HashMap<int, List<double>>();
 
 
 BuildContext currentContext;
@@ -438,13 +437,10 @@ class MyApp2 extends StatefulWidget {
 class _MyAppState extends State<MyApp2> {
   Completer<GoogleMapController> _controller = Completer();
 
-  final coords = {4067: {-27.498456, 153.006001}, 4068:
-  {-27.501959, 152.974870}, 4066: {-27.482627, 152.984983}, 4064:
-  {-27.466399, 153.007242}, 4006: {-27.456323, 153.035119}};
+  final coords = {4067: [-27.498456, 153.006001], 4068:
+  [-27.501959, 152.974870], 4066: [-27.482627, 152.984983], 4064:
+  [-27.466399, 153.007242], 4006: [-27.456323, 153.035119]};
 
-  for(var i in inspector.keys){
-    _onAddMarkerButtonPressed(i);
-  }
 
   //static const LatLng _center = const LatLng(-27.40125, 153.021072);
   static const LatLng _center = const LatLng(-27.41125, 153.021072);
@@ -461,6 +457,12 @@ class _MyAppState extends State<MyApp2> {
   double latitude = -27.41125;
   double longitude = 153.021072;
 
+  void _setup() {
+    for(var i in inspector.keys){
+      _onAddMarkerButtonPressed(i);
+    }
+  }
+
   void _onMapTypeButtonPressed() {
     setState(() {
       _currentMapType = _currentMapType == MapType.normal
@@ -470,9 +472,14 @@ class _MyAppState extends State<MyApp2> {
   }
 
   void _onAddMarkerButtonPressed(int coord) {
-    Set lat_lang = coords[coord];
+    List<double> lat_lang = coords[coord];
     posList.add(_generate_lat_lng(lat_lang[0], lat_lang[1]));
     print(posList);
+    String name;
+    for (var i in inspector[coord].keys) {
+      name = i ;
+    }
+    String email = inspector[coord][name];
     setState(() {
       _markers.clear();
       for (LatLng pos in posList) {
@@ -480,8 +487,8 @@ class _MyAppState extends State<MyApp2> {
           markerId: MarkerId(pos.toString()),
           position: pos,
           infoWindow: InfoWindow(
-            title: 'Really cool place',
-            snippet: '5 Star Rating',
+            title: '$name',
+            snippet: '$email',
           ),
           icon: BitmapDescriptor.defaultMarker,
         ));
@@ -524,6 +531,7 @@ class _MyAppState extends State<MyApp2> {
 
   void _onMapCreated(GoogleMapController controller) {
     _controller.complete(controller);
+    _setup();
   }
 
   @override
