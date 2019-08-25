@@ -171,10 +171,10 @@ class _MyHomePageState extends State<MyHomePage> {
 //            ],
 //          ),
       Container(
-        width: 100,
-        height: 100,
+        width: 400,
+        height: 200,
         child: Image.asset(
-          'images/Unknown.jpg',
+          'images/add01.jpg',
           //'images/Unknown.jpg',
           fit: BoxFit.fitHeight,
         ),
